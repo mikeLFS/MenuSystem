@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "Interfaces/OnlineSessionInterface.h"
 #include "MenuSystemCharacter.generated.h"
 
 
@@ -64,6 +65,17 @@ public:
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 public:
-	TSharedPtr<class IOnlineSession, ESPMode::ThreadSafe> SessionInterface;
-};
+	//TSharedPtr<class IOnlineSession, ESPMode::ThreadSafe> SessionInterface;
+	IOnlineSessionPtr OnlineSessionInterface;
 
+protected:
+	UFUNCTION(BlueprintCallable) 
+	void CreateGameSession();
+
+	void OnCreateSessionComplete(FName SessionName , bool bWasSuccessfull);
+
+private:
+	FOnCreateSessionCompleteDelegate CreateSessionCompleteDelegate;
+
+};
+ 

@@ -76,3 +76,4 @@ DerivedDataCache/*
 #Custom  Ignore List
 Platforms/*
 .vsconfig
+TestBuild/*
